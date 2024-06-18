@@ -1,9 +1,12 @@
 import { Request, Response, Router } from 'express';
+import DrugsRepository from '../repositories/drugs.repository';
 
 const router = Router();
 
-router.get('/', (_req: Request, res: Response) => {
-  return res.status(200).json({ message: 'I`m fine' });
+router.get('/drugs', async (req: Request, res: Response) => {
+  const result = await DrugsRepository.findAll();
+
+  return res.status(200).json(result);
 });
 
 export { router };
